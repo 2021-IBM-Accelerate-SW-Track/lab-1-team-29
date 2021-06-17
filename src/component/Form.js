@@ -6,14 +6,14 @@ function Form({ tasks, setTasks }) {
     const [inputText, setInputText] = useState("");
     return(
         <form>
-            <input className = "input"
+            <input data-testid = "new-item-input" className = "input"
                 type = "text" 
                 placeholder = "Enter Task" 
                 onChange = {handleInput} 
                 onKeyDown = {enterSubmission}
                 value = {inputText}/>
 
-            <Button variant="outlined" 
+            <Button data-testid = "new-item-button" variant="outlined" 
                 onClick = {handleSubmission}> add </Button>
         </form>
     );
