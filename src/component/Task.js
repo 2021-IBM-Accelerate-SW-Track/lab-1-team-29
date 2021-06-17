@@ -7,22 +7,23 @@ function Task({ task, tasks, setTasks }){
     const [checked, setChecked] = useState(false);
     const dateTime = new Intl.DateTimeFormat('en-US', 
         {year: 'numeric', 
-        month: '2-digit',
-        day: '2-digit', 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit'}).format(task.timestamp);
+         month: '2-digit',
+         day: '2-digit', 
+         hour: '2-digit', 
+         minute: '2-digit', 
+         second: '2-digit'}).format(task.timestamp);
 
     return (
-        <div>
+        <div className = "taskDesign">
             <FormControlLabel
                 control = {<Checkbox 
                     checked = {checked} 
                     onChange = {handleChange}/>}
                 label = {task.text}/>
-            <p>{dateTime}</p>
+            <span> { dateTime} </span>
             <Button onClick = {deleteTask}> Delete </Button>
-            <Button> Edit </Button>
+            <Button onClick = {editTask}> Edit </Button>
+            <br/>
         </div>
     );
 
@@ -33,6 +34,19 @@ function Task({ task, tasks, setTasks }){
     function deleteTask(){
         setTasks(tasks.filter((element) => 
             element.id !== task.id));
+    }
+
+    function editTask(){
+        return(
+            <div>
+                <input 
+                    type = "text"/>
+                <Button> Cancel </Button>
+                <Button> Save </Button>
+            </div>
+            
+        );
+       
     }
 
 }

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
+import './../App.css';
 
 function Form({ tasks, setTasks }) {
     const [inputText, setInputText] = useState("");
     return(
         <form>
-            <input 
-                type="text" 
+            <input className = "input"
+                type = "text" 
                 placeholder = "Enter Task" 
                 onChange = {handleInput} 
                 onKeyDown = {enterSubmission}
