@@ -1,49 +1,65 @@
 import Header from "./component/header"
+import React, {useState} from 'react';
+import { TaskForm } from "./component/TaskForm/TaskForm";
+import { Task } from "./component/Task/Task";
 
 import './App.css';
 
-const allTasks = [
-  {
-      id: 0,
-      description: "Gym",
-      dateTime: "Created on {date} at {time}",
-      isCompleted: false
-  },
-  {
-      id: 1, 
-      description: "Bathe Dog",
-      dateTime: "Created on {June 2nd, 2021} at {10:52:21 a.m.}",
-      isCompleted: false
-  },
-  {
-    id: 2, 
-    description: "Code",
-    dateTime: "Created on {June 10th, 2021} at {12:03:57 a.m.}",
-    isCompleted: false
-}
-]
-
 function App() {
+  // state of the tasks being displayed
+  const [allTasks, setAllTasks] = useState([
+    {
+      id: 0,
+      description: "gym",
+      dateTime: {
+        date: "June 12th, 2021",
+        time: "12:42:20 a.m."
+      },
+      isCompleted: false
+    },
+    {
+      id: 1,
+      description: "coding",
+      dateTime: {
+        date: "June 21th, 2021",
+        time: "10:10:10 a.m."
+      },
+      isCompleted: false
+    }
+  ])
+
+  // adds new task objects and sets the state for allTasks obj
+  const addTask = text => {
+    const newTasks = [...allTasks, { text }];
+    setAllTasks(newTasks);
+  }
+
+  // removes curr task based on index and updates
+  // state for allTasks obj
+  const removeTask = index => {
+    const newTasks = [...allTasks];
+    newTasks.splice(index, 1);
+    setAllTasks(newTasks);
+  }
+
   return (
     <div className="App">
-      <section className="tasklist">
-        {allTasks.map(task => {
-          return <Tasks key={task.id} {...task} />
+      <Header />
+      <section className="todo-item-box">
+        <TaskForm {...allTasks}/>
+      </section>
+      <section className="todo-list">
+        {allTasks.map((task, index) => {            
+            <Task 
+            key={index}
+            {...task}
+            />
         })}
       </section>
     </div>
   );
 }
 
-function Tasks({description, dateTime, isCompleted}) {
-  
-  return (
-    <article className="tasks">
-      <h1 className="desc">Task: {description}</h1>
-      <h3 className="datetime">{dateTime}</h3>
-      <h4>{isCompleted}</h4>
-    </article>
-  )
-}
+
 
 export default App;
