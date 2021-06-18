@@ -7,34 +7,16 @@ import './App.css';
 
 function App() {
   // state of the tasks being displayed
-  const [allTasks, setAllTasks] = useState([
-    {
-      id: 0,
-      description: "gym",
-      dateTime: {
-        date: "June 12th, 2021",
-        time: "12:42:20 a.m."
-      },
-      isCompleted: false
-    },
-    {
-      id: 1,
-      description: "coding",
-      dateTime: {
-        date: "June 21th, 2021",
-        time: "10:10:10 a.m."
-      },
-      isCompleted: false
-    }
-  ])
+  const [allTasks, setAllTasks] = useState([]);
 
   // adds new task objects and sets the state for allTasks obj
   const addTask = text => {
     // instantiates a new date for each task added
     const date = new Date()
 
+    // all vars to be implemented in dateTime property to get current time
     const year = date.getFullYear();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
     const day = date.getDate();
     const hour = date.getHours();
     const minute = date.getMinutes();
@@ -45,6 +27,14 @@ function App() {
       dateTime: `Created on ${month}/${day}/${year} at ${hour}:${minute < 10 ? "0" + minute: minute}`,
       isCompleted: false 
     }];
+    setAllTasks(newTasks);
+  }
+
+  // sets the isCompleted property to true
+  // will render a line through the desc to indicate complete task
+  const completeTask = index => {
+    const newTasks = [...allTasks];
+    newTasks[index].isCompleted = true;
     setAllTasks(newTasks);
   }
 
@@ -60,12 +50,18 @@ function App() {
     <div className="App">
       <Header />
       <section className="todo-item-box">
-        <TaskForm addTask={addTask} {...allTasks}/>
+        <TaskForm addTask={addTask}/>
       </section>
       <section className="todo-list">
         {allTasks.map((task, index) => {            
           return (
-          <Task key={index} {...task} />
+          <Task 
+          key={index}
+          index={index}
+          {...task}
+          completeTask={completeTask}
+          removeTask={removeTask}
+          />
           )
         })}
       </section>
