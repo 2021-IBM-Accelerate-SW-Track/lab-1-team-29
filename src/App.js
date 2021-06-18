@@ -1,7 +1,7 @@
 import Header from "./component/header"
 import React, {useState} from 'react';
 import { TaskForm } from "./component/TaskForm/TaskForm";
-import { Task } from "./component/Task/Task";
+import Task from "./component/Task/Task";
 
 import './App.css';
 
@@ -30,7 +30,21 @@ function App() {
 
   // adds new task objects and sets the state for allTasks obj
   const addTask = text => {
-    const newTasks = [...allTasks, { text }];
+    // instantiates a new date for each task added
+    const date = new Date()
+
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    // makes a new object arr with curr objects plus the added task
+    const newTasks = [...allTasks, { 
+      description: text,
+      dateTime: `Created on ${month}/${day}/${year} at ${hour}:${minute < 10 ? "0" + minute: minute}`,
+      isCompleted: false 
+    }];
     setAllTasks(newTasks);
   }
 
@@ -46,14 +60,13 @@ function App() {
     <div className="App">
       <Header />
       <section className="todo-item-box">
-        <TaskForm {...allTasks}/>
+        <TaskForm addTask={addTask} {...allTasks}/>
       </section>
       <section className="todo-list">
         {allTasks.map((task, index) => {            
-            <Task 
-            key={index}
-            {...task}
-            />
+          return (
+          <Task key={index} {...task} />
+          )
         })}
       </section>
     </div>

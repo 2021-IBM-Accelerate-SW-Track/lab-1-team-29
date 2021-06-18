@@ -4,13 +4,14 @@ import React, {useState} from 'react'
 export function TaskForm({ addTask }) {
     // states for all of the task data to be changed
     const [text, setText] = useState("");
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-    const [isCompleted, setIsCompleted] = useState(false);
   
-  
+    // once user clicks add button, it will invoke the addTask func
+    // which sets up a new object array with the new task desc and time
     const clickChanger = e => {
       e.preventDefault();
+      if (!text) return;
+      addTask(text);
+      setText(""); // resets text
     }
   
   
@@ -22,7 +23,8 @@ export function TaskForm({ addTask }) {
         className="input"
         required={true}
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        // grabs input value and changes state of text value
+        onChange={(e) => setText(e.target.value)} 
         ></input>
         <button>Add</button>
       </form>
