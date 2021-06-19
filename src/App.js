@@ -9,6 +9,7 @@ function App() {
   // state of the tasks being displayed
   const [allTasks, setAllTasks] = useState([]);
 
+
   // adds new task objects and sets the state for allTasks obj
   const AddTask = text => {
     // instantiates a new date for each task added
@@ -51,7 +52,7 @@ function App() {
     <div className="App">
       <Header />
       <section className="todo-item-box">
-        <TaskForm AddTask={AddTask}/>
+        <TaskForm AddTask={AddTask} allTasks={allTasks}/>
       </section>
       <section className="todo-list">
         {
