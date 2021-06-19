@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
-
+import TextField from "@material-ui/core/TextField"
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 export function TaskForm({ AddTask, allTasks}) {
+
     // states for all of the task data to be changed
     const [text, setText] = useState("");
   
@@ -14,7 +17,6 @@ export function TaskForm({ AddTask, allTasks}) {
       AddTask(text);
       setText(""); // resets text
     }
-
 
     // function that iterates through allTasks and checks if input value equals
     // any of the tasks' description
@@ -31,7 +33,11 @@ export function TaskForm({ AddTask, allTasks}) {
   
     return (
       <form onSubmit={clickChanger} className="todo-input-form">
-        <input 
+        <TextField 
+        id="outlined-basic" 
+        label="Task" 
+        variant="outlined" 
+        size="small"
         type="text" 
         placeholder="Add a task..." 
         className="input"
@@ -39,8 +45,15 @@ export function TaskForm({ AddTask, allTasks}) {
         value={text}
         // grabs input value and changes state of text value
         onChange={(e) => setText(e.target.value)} 
-        ></input>
-        <button>Add</button>
+        />
+        <Fab 
+        onClick={clickChanger} 
+        size="small" 
+        color="secondary" 
+        aria-label="add"
+        >
+          <AddIcon />
+        </Fab>
       </form>
     )
   }
