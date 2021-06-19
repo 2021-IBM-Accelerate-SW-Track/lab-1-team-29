@@ -1,4 +1,4 @@
-export default function Task({index, description, dateTime, isCompleted, completeTask, removeTask}) {
+export default function Task({index, description, dateTime, isCompleted, CompleteTask, RemoveTask}) {
     return (
         <article className="task-obj">
             <div className="task-info">
@@ -6,10 +6,10 @@ export default function Task({index, description, dateTime, isCompleted, complet
                 style={{textDecoration: isCompleted ? 'line-through' : ''}}>{description}</h1>
                 <h3 className="task-date-time">{dateTime}</h3>
             </div>
-            <button className="task-checkbox" onClick={() => completeTask(index)}>
-                Done
+            <button className="task-checkbox" onClick={() => CompleteTask(index)}>
+                {isCompleted ? 'Not done' : 'Done'}
             </button>
-            <button className="task-remove" onClick={() => removeTask(index)}>
+            <button className="task-remove" onClick={() => RemoveTask(index)}>
                 Remove
             </button>
         </article>

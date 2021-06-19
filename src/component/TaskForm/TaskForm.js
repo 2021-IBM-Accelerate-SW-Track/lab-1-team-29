@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 
-export function TaskForm({ addTask }) {
+export function TaskForm({ AddTask }) {
     // states for all of the task data to be changed
     const [text, setText] = useState("");
   
@@ -10,7 +10,7 @@ export function TaskForm({ addTask }) {
     const clickChanger = e => {
       e.preventDefault();
       if (!text) return;
-      addTask(text);
+      AddTask(text);
       setText(""); // resets text
     }
   

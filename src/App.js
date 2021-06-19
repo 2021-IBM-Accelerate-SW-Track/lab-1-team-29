@@ -10,7 +10,7 @@ function App() {
   const [allTasks, setAllTasks] = useState([]);
 
   // adds new task objects and sets the state for allTasks obj
-  const addTask = text => {
+  const AddTask = text => {
     // instantiates a new date for each task added
     const date = new Date()
 
@@ -30,17 +30,18 @@ function App() {
     setAllTasks(newTasks);
   }
 
-  // sets the isCompleted property to true
+
+  // toggles the isCompleted property between true and false onClick
   // will render a line through the desc to indicate complete task
-  const completeTask = index => {
-    const newTasks = [...allTasks];
-    newTasks[index].isCompleted = true;
-    setAllTasks(newTasks);
-  }
+  const CompleteTask = index => {
+    const newTask = [...allTasks];
+    newTask[index].isCompleted = !newTask[index].isCompleted;
+    setAllTasks(newTask);
+  };
 
   // removes curr task based on index and updates
   // state for allTasks obj
-  const removeTask = index => {
+  const RemoveTask = index => {
     const newTasks = [...allTasks];
     newTasks.splice(index, 1);
     setAllTasks(newTasks);
@@ -50,20 +51,14 @@ function App() {
     <div className="App">
       <Header />
       <section className="todo-item-box">
-        <TaskForm addTask={addTask}/>
+        <TaskForm AddTask={AddTask}/>
       </section>
       <section className="todo-list">
-        {allTasks.map((task, index) => {            
-          return (
-          <Task 
-          key={index}
-          index={index}
-          {...task}
-          completeTask={completeTask}
-          removeTask={removeTask}
-          />
-          )
-        })}
+        {
+          allTasks.map((task, index) => (
+            <Task key={index} index={index} {...task} RemoveTask={RemoveTask} CompleteTask={CompleteTask}/>
+          ))
+        }
       </section>
     </div>
   );
