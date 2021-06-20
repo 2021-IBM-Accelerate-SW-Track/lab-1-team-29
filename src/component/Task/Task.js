@@ -7,6 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { TextField } from '@material-ui/core';
+import Grow from '@material-ui/core/Grow';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -45,7 +46,7 @@ export default function Task({index, description, dateTime, isCompleted, Complet
 
     // EDIT TEMPLATE *************
     const editTemplate = (
-        <Zoom in={true}> 
+        <Grow in={true}> 
             <form onSubmit={handleSubmit}>
             <Card classes={{ root: classes.card }}>
                     <CardHeader
@@ -74,22 +75,17 @@ export default function Task({index, description, dateTime, isCompleted, Complet
                         }
                     />
                     <CardActions>
-                        <Button 
-                        size="small" 
-                        onClick={() => CompleteTask(index)}>
-                            {isCompleted ? 'Undo' : 'Done'}
-                        </Button>
-                        <Button 
-                        size="small"
-                        onClick={() => {setEditing(!isEditing);setNewName("")}} 
-                        >
-                            Cancel
-                        </Button>
+                            <Button 
+                            size="small"
+                            onClick={() => {setEditing(!isEditing);setNewName("")}} 
+                            >
+                                Cancel
+                            </Button>
                     </CardActions>
 
                 </Card>
             </form>
-        </Zoom>
+        </Grow>
     )
     // END OF EDIT TEMPLATE *************
 
