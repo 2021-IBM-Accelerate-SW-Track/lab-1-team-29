@@ -64,7 +64,7 @@ export function TaskForm({ AddTask, allTasks}) {
         onClick={clickChanger} 
         size="small"
         variant="contained"
-        color="secondary" 
+        color="primary" 
         aria-label="add"
         className={classes.addBtn}
         >

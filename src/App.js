@@ -65,6 +65,16 @@ function App() {
     setAllTasks(newTasks);
   }
 
+  // updates the task based on the index and the newDesc being changed
+  // in the description property
+  const UpdateTask = (index, newDesc) => {
+    const newTasks = [...allTasks];
+    console.log(newTasks[index].description);
+    newTasks[index].description = newDesc;
+    setAllTasks(newTasks);
+    console.log(newTasks[index].description);
+  }
+
   return (
     <>
     <ThemeProvider theme={darkTheme}>
@@ -89,6 +99,7 @@ function App() {
                     {...task} 
                     RemoveTask={RemoveTask} 
                     CompleteTask={CompleteTask}
+                    UpdateTask={UpdateTask}
                     />
                   </Box>
                 </Grid>
