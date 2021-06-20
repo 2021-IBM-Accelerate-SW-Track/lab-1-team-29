@@ -10,6 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
 
 function App() {
+  // logic for dark mode toggle
   const [darkState, setDarkState] = useState(false);
   const palletType = darkState ? "dark" : "light";
   const darkTheme = createMuiTheme({
@@ -17,11 +18,11 @@ function App() {
       type: palletType,
     }
   });
+  // function that changes the state of the theme onClick
   const handleThemeChange = () => {
     setDarkState(!darkState);
   };
-
-
+  
   // state of the tasks being displayed
   const [allTasks, setAllTasks] = useState([]);
 

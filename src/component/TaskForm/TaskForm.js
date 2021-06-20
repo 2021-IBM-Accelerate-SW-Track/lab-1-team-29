@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import TextField from "@material-ui/core/TextField"
-import Fab from '@material-ui/core/Fab';
+import { Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   addBtn: {
     marginLeft: 20,
-    marginTop: 7
+    marginTop: 12,
+    borderRadius: 30,
   },
 
   inputStyle: {
@@ -58,16 +59,17 @@ export function TaskForm({ AddTask, allTasks}) {
           // grabs input value and changes state of text value
           onChange={(e) => setText(e.target.value)}
         />
-        <Fab
+        <Button
         data-testid="new-item-button"
         onClick={clickChanger} 
-        size="small" 
+        size="small"
+        variant="contained"
         color="secondary" 
         aria-label="add"
         className={classes.addBtn}
         >
           <AddIcon />
-        </Fab>
+        </Button>
       </form>
     )
   }
