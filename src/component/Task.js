@@ -23,7 +23,6 @@ function Task({ task, tasks, setTasks }){
             <span> { dateTime} </span>
             <Button onClick = {deleteTask}> Delete </Button>
             <Button onClick = {editTask}> Edit </Button>
-            <br/>
         </div>
     );
 
@@ -37,18 +36,8 @@ function Task({ task, tasks, setTasks }){
     }
 
     function editTask(){
-        return(
-            <div>
-                <input 
-                    type = "text"/>
-                <Button> Cancel </Button>
-                <Button> Save </Button>
-            </div>
-            
-        );
-       
-    }
 
+    }
 }
 
 export default Task;

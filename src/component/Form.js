@@ -14,12 +14,12 @@ function Form({ tasks, setTasks }) {
                 value = {inputText}/>
 
             <Button data-testid = "new-item-button" variant="outlined" 
-                onClick = {handleSubmission}> add </Button>
+                onClick = {handleSubmission}> Add </Button>
         </form>
     );
 
     function handleInput(event){
-        setInputText(event.target.value)
+        setInputText(event.target.value);
     }
 
     // Submits when user presses 'Enter' instead of 'Add'
@@ -31,12 +31,24 @@ function Form({ tasks, setTasks }) {
 
     function handleSubmission(event){
         event.preventDefault();
+        if(!inputText || /^\s*$/.test(inputText)){
+            return; 
+        }
+
+        // Checking for duplicates 
+        for(let i = 0; i < tasks.length; i++){
+            if(tasks[i].text === inputText){
+                setInputText("");
+                return;
+            }
+         }
+
         setTasks([...tasks, 
-            {id: Math.random(100), 
+            {id: Math.random(10000), 
              text: inputText, 
              timestamp: Date.now()}]);
         setInputText("");
     }
 }
 
-export default Form
+export default Form;
