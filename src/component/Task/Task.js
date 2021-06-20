@@ -1,26 +1,34 @@
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import { IconButton} from '@material-ui/core';
-import { DeleteOutlined } from '@material-ui/icons';
-import { Button } from '@material-ui/core';
+import { Button, Typography, IconButton} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+    card: {
+        marginTop: 20,
+        boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
+    }
+  }));
 
 export default function Task({index, description, dateTime, isCompleted, CompleteTask, RemoveTask}) {
+    const classes = useStyles();
     return (
-        // TO ADD
-        // style={{textDecoration: isCompleted ? 'line-through' : ''}}>{description}
-        <Card>
+        <Card classes={{ root: classes.card }}>
             <CardHeader
                 action = {
                     <IconButton onClick={() => RemoveTask(index)}>
-                        <DeleteOutlined />
+                        <DeleteIcon />
                     </IconButton> 
                 }
-                title={description}
+                title={
+                    <Typography 
+                    style={{textDecoration: isCompleted ? 'line-through' : ''}}
+                    variant={"h5"}>
+                        {description}
+                    </Typography>
+                }
                 subheader={dateTime}
             />
             <CardActions>
