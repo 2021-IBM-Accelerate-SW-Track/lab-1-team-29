@@ -38,7 +38,8 @@ function Form({ tasks, setTasks }) {
         // Checking for duplicates 
         for(let i = 0; i < tasks.length; i++){
             if(tasks[i].text === inputText){
-                setInputText("");
+                //setInputText("");
+                alert("Entry already exists!")
                 return;
             }
          }

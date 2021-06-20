@@ -36,7 +36,7 @@ function Task({ task, tasks, setTasks }){
     }
 
     function editTask(){
-
+        
     }
 }
 
