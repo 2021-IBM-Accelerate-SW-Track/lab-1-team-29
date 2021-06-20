@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import { TaskForm } from "./component/TaskForm/TaskForm";
 import Task from "./component/Task/Task";
 import { Box, Container, Grid } from "@material-ui/core";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -11,17 +10,18 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
 
 function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const [darkState, setDarkState] = useState(false);
+  const palletType = darkState ? "dark" : "light";
+  const darkTheme = createMuiTheme({
+    palette: {
+      type: palletType,
+    }
+  });
+  const handleThemeChange = () => {
+    setDarkState(!darkState);
+  };
 
-  const theme = React.useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
+
   // state of the tasks being displayed
   const [allTasks, setAllTasks] = useState([]);
 
@@ -66,10 +66,13 @@ function App() {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className="App">
-        <Header />
+        <Header 
+        darkState={darkState} 
+        handleThemeChange={handleThemeChange}
+        />
         <section className="todo-item-box">
           <TaskForm AddTask={AddTask} allTasks={allTasks}/>
         </section>
