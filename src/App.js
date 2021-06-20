@@ -3,10 +3,25 @@ import React, {useState} from 'react';
 import { TaskForm } from "./component/TaskForm/TaskForm";
 import Task from "./component/Task/Task";
 import { Box, Container, Grid } from "@material-ui/core";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 import './App.css';
 
 function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
   // state of the tasks being displayed
   const [allTasks, setAllTasks] = useState([]);
 
@@ -50,31 +65,36 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Header />
-      <section className="todo-item-box">
-        <TaskForm AddTask={AddTask} allTasks={allTasks}/>
-      </section>
-      <Container className="todo-list">
-        <Grid container spacing={3}>
-          {
-            allTasks.map((task, index) => (
-              <Grid item xs={12} md={6} lg={4}>
-                <Box>
-                  <Task
-                  key={index} 
-                  index={index} 
-                  {...task} 
-                  RemoveTask={RemoveTask} 
-                  CompleteTask={CompleteTask}
-                  />
-                </Box>
-              </Grid>
-            ))
-          }
-        </Grid>
-      </Container>
-    </div>
+    <>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="App">
+        <Header />
+        <section className="todo-item-box">
+          <TaskForm AddTask={AddTask} allTasks={allTasks}/>
+        </section>
+        <Container className="todo-list">
+          <Grid container spacing={3}>
+            {
+              allTasks.map((task, index) => (
+                <Grid item xs={12} md={6} lg={4}>
+                  <Box>
+                    <Task
+                    key={index} 
+                    index={index} 
+                    {...task} 
+                    RemoveTask={RemoveTask} 
+                    CompleteTask={CompleteTask}
+                    />
+                  </Box>
+                </Grid>
+              ))
+            }
+          </Grid>
+        </Container>
+      </div>
+    </ThemeProvider>
+    </>
   );
 }
 

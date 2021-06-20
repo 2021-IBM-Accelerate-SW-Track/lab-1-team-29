@@ -35,7 +35,7 @@ export default function Task({index, description, dateTime, isCompleted, Complet
                 <Button 
                 size="small" 
                 onClick={() => CompleteTask(index)}>
-                    {isCompleted ? 'Not done' : 'Done'}
+                    {isCompleted ? 'Undo' : 'Done'}
                 </Button>
             </CardActions>
         </Card>
