@@ -2,6 +2,8 @@ import Header from "./component/header"
 import React, {useState} from 'react';
 import { TaskForm } from "./component/TaskForm/TaskForm";
 import Task from "./component/Task/Task";
+import { Paper, Container, Grid, spacing} from "@material-ui/core";
+
 
 import './App.css';
 
@@ -54,13 +56,25 @@ function App() {
       <section className="todo-item-box">
         <TaskForm AddTask={AddTask} allTasks={allTasks}/>
       </section>
-      <section className="todo-list">
-        {
-          allTasks.map((task, index) => (
-            <Task key={index} index={index} {...task} RemoveTask={RemoveTask} CompleteTask={CompleteTask}/>
-          ))
-        }
-      </section>
+      <Container className="todo-list">
+        <Grid container spacing={3}>
+          {
+            allTasks.map((task, index) => (
+              <Grid item xs={12} md={6} lg={4}>
+                <Paper>
+                  <Task
+                  key={index} 
+                  index={index} 
+                  {...task} 
+                  RemoveTask={RemoveTask} 
+                  CompleteTask={CompleteTask}
+                  />
+                </Paper>
+              </Grid>
+            ))
+          }
+        </Grid>
+      </Container>
     </div>
   );
 }
