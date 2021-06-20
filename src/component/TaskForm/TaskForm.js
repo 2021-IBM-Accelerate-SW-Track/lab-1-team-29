@@ -47,6 +47,7 @@ export function TaskForm({ AddTask, allTasks}) {
     return (
       <form onSubmit={clickChanger} className="todo-input-form">
         <TextField
+          data-testid="new-item-input"
           id="outlined-dense"
           label="Task"
           className={classes.inputStyle}
@@ -57,7 +58,8 @@ export function TaskForm({ AddTask, allTasks}) {
           // grabs input value and changes state of text value
           onChange={(e) => setText(e.target.value)}
         />
-        <Fab 
+        <Fab
+        data-testid="new-item-button"
         onClick={clickChanger} 
         size="small" 
         color="secondary" 

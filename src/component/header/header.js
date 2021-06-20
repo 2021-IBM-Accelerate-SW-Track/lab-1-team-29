@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     Switch: {
         position: 'relative',
-        left: 200,
+        left: 160,
         bottom: 55
     },
   });
