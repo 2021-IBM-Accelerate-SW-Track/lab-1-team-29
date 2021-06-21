@@ -1,4 +1,4 @@
-import Header from "./component/header"
+import Header from "./component/Header"
 import React, {useState} from 'react';
 import { TaskForm } from "./component/TaskForm/TaskForm";
 import Task from "./component/Task/Task";
