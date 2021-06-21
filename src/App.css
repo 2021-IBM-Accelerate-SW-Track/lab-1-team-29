@@ -16,18 +16,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.tasks {
-  margin: 2rem;
-  height: 200px;
-  border-radius: 7px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
-
-.desc {
-  font-size: 35px;
-}
-
-.datetime {
-  font-size: small;
-}
